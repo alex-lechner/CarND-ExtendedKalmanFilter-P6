@@ -52,18 +52,13 @@ public:
    */
   void Predict();
 
-  /**
-   * Updates the state by using standard Kalman Filter equations
-   * @param z The measurement at k+1
-   */
-  void Update(const Eigen::VectorXd &z);
 
   /**
-   * Updates the state by using Extended Kalman Filter equations
+   * Updates the state by using standard & Extended Kalman Filter equations
    * @param z The measurement at k+1
+   * @param useExtended true if Extended Kalman Filter should be used instead of standard
    */
-  void UpdateEKF(const Eigen::VectorXd &z);
-
+  void UpdateEKF(const Eigen::VectorXd &z, bool useExtended);
 };
 
 #endif /* KALMAN_FILTER_H_ */
