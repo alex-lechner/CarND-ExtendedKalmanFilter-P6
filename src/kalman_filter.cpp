@@ -34,20 +34,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z, bool useExtended) {
     */
     VectorXd z_pred;
     if (useExtended) {
-        double r, r_dot, p, px, py, vx, vy;
+        double r, r_dot, th, px, py, vx, vy;
         px = x_(0);
         py = x_(1);
         vx = x_(2);
         vy = x_(3);
         r = sqrt(px * px + py * py);
-        p = atan2(py, px);
+        th = atan2(py, px);
         if (fabs(r) < 0.0001) {
             r = 0;
         }
         r_dot = (px * vx + py * vy) / r;
-
-        z_pred(3);
-        z_pred << r, p, r_dot;
+        z_pred = VectorXd(3);
+        z_pred << r, th, r_dot;
     } else {
         z_pred = H_ * x_;
     }

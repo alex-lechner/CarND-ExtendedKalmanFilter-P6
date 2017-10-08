@@ -1,6 +1,4 @@
 #include "FusionEKF.h"
-#include "tools.h"
-#include "Eigen/Dense"
 #include <iostream>
 
 using namespace std;
@@ -60,12 +58,13 @@ FusionEKF::FusionEKF() {
             0, 0, 1, 0,
             0, 0, 0, 1;
 
+    ekf_.Q_ = MatrixXd(4, 4);
+
     H_laser_ << 1, 0, 0, 0,
             0, 1, 0, 0;
 
-    noise_ax = 5;
-    noise_ay = 5;
-
+    noise_ax = 9;
+    noise_ay = 9;
 
 }
 
@@ -134,7 +133,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     ekf_.F_(0, 2) = dt;
     ekf_.F_(1, 3) = dt;
 
-    ekf_.Q_ = MatrixXd(4, 4);
     ekf_.Q_ << dt_4 / 4 * noise_ax, 0, dt_3 / 2 * noise_ax, 0,
             0, dt_4 / 4 * noise_ay, 0, dt_3 / 2 * noise_ay,
             dt_3 / 2 * noise_ax, 0, dt_2 * noise_ax, 0,
@@ -152,7 +150,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
        * Use the sensor type to perform the update step.
        * Update the state and covariance matrices.
      */
-
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
         // Radar updates
         ekf_.R_ = R_radar_;
