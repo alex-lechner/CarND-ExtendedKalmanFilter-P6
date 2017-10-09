@@ -17,6 +17,7 @@ The goals / steps of this project are the following:
 [linux on win 10]: https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
 [MinGW]: http://www.mingw.org/
 [CMake]: https://cmake.org/install/
+[udacity code]: https://github.com/udacity/CarND-Extended-Kalman-Filter-Project
 
 ---
 
@@ -24,7 +25,7 @@ The goals / steps of this project are the following:
 
 ### 1. Submission includes all required files and every TODO task has been accomplished 
 
-For this project I have modified the following five files:
+For this project I have used the [Extended Kalman Filter Project Starter Code][udacity code] from Udacity and I have modified the following five files:
 ```cpp
 FusionEKF.cpp
 FusionEKF.h
